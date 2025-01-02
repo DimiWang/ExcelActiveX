@@ -375,7 +375,7 @@ void AxObject::VARIANT_to_QVariant(const VARIANT &arg, QVariant &var)
         break;
 
     case VT_BSTR:
-        var = QString::fromUtf16(arg.bstrVal);
+        var = QString::fromUtf16((const char16_t*)arg.bstrVal);
         break;
 
     case VT_ARRAY|VT_VARIANT:
@@ -984,7 +984,7 @@ bool AxObject::property_put(Class pobj, const QString &prop, const QVariant &v)
         //name with index
         else if(prop_rx_index.exactMatch(prop))
         {
-            QString &name = prop_rx_index.cap(1);
+            const QString &name = prop_rx_index.cap(1);
             // index text
             QString tmp = prop_rx_index.cap(2);
             // index is a string
@@ -1055,7 +1055,7 @@ bool AxObject::property_put_variant(AxObject::Class pobj, const QString &prop, c
         //name with index
         else if(prop_rx_index.exactMatch(prop))
         {
-            QString &name = prop_rx_index.cap(1);
+            const QString &name = prop_rx_index.cap(1);
             // index text
             QString tmp = prop_rx_index.cap(2);
             // index is a string
@@ -1135,7 +1135,7 @@ bool AxObject::property_get(Class pobj, const QString &prop, QVariant *pvalue)
         //name with index
         else if(prop_rx_index.exactMatch(prop))
         {
-            QString &name = prop_rx_index.cap(1);
+            const QString &name = prop_rx_index.cap(1);
             // index text
             QString tmp = prop_rx_index.cap(2);
             // index is a string

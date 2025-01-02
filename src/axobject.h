@@ -65,7 +65,7 @@ public:
     bool property(Class parent, const QString &prop_path, QVariant *pvalue);
     void clearAbort();
 
-    bool method_run(Class parent, const QString &method, QVariant *pres=&QVariant()
+    bool method_run(Class parent, const QString &method, QVariant *pres=0
                                                 , const QVariant &v1=QVariant()
                                                 , const QVariant &v2=QVariant()
                                                 , const QVariant &v3=QVariant()
@@ -76,7 +76,7 @@ public:
                                                 , const QVariant &v8=QVariant()
                                                 );
 
-    bool dynamicCall(Class parent,const QString &method_path, QVariant *pres=&QVariant()
+    bool dynamicCall(Class parent,const QString &method_path, QVariant *pres=0
                                                 , const QVariant &v1=QVariant()
                                                 , const QVariant &v2=QVariant()
                                                 , const QVariant &v3=QVariant()
@@ -108,7 +108,7 @@ public:
 
     static void QVariant_to_VARIANT(const QVariant &var,VARIANT &arg);    
     static void VARIANT_to_QVariant(const VARIANT &arg,QVariant &var);
-    static void AxObject::clearVARIANT(VARIANT *var);
+    static void clearVARIANT(VARIANT *var);
 
     static void QVariantList_to_2D_VARIANT(const QVariantList &list, int dimx,int dimy, VARIANT &arg);
     static void QStringList_to_2D_VARIANT(const QStringList &list, int dimx, int dimy, VARIANT &arg);

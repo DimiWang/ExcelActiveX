@@ -1078,7 +1078,8 @@ bool Excel::Range_Is_Valid(const QString &range)
 bool Excel::test()
 {
     mp_exlObject->blockSignals(1);
-    bool result = read(1,1,QVariant());
+    QVariant data;
+    bool result = read(1,1,data);
     mp_exlObject->blockSignals(0);
     if(!result)
         m_badFile =  true;
@@ -1153,7 +1154,7 @@ bool Excel::Table::appendDataRow(const QStringList &data)
     if(!data.isEmpty())
     {
         int i=0;
-        int row,column;
+        int row=0,column=0;
         foreach(const QString &txt, data)
         {
             row = i/m_width + 1 + m_rows_count;

@@ -141,8 +141,8 @@ public:
                 m_x = 0;
                 for(int i=rx.cap(1).count()-1;i>=0;i--)
                 {
-                    if(i==rx.cap(1).count()-1) m_x = rx.cap(1)[i].toAscii()-'A';
-                    else m_x += ((rx.cap(1)[i].toAscii()-'A')+1)*26;
+                    if(i==rx.cap(1).count()-1) m_x = rx.cap(1)[i].toLatin1()-'A';
+                    else m_x += ((rx.cap(1)[i].toLatin1()-'A')+1)*26;
                 }
                 m_y = rx.cap(2).toInt()-1;
             }
@@ -150,9 +150,9 @@ public:
 
         Cell(int x, int y)
         {
-            if(m_x>=0) this->m_x = x;
+            if(x >= 0) this->m_x = x;
             else  this->m_x = 0;
-            if(m_y>=0) this->m_y = y;
+            if(y >= 0) this->m_y = y;
             else  this->m_y = 0;
         }
         int x() const {return m_x;}
@@ -266,7 +266,7 @@ public:
                 m_x = -1;  m_y = -1;
                 m_width = -1; m_height = -1;                
             }
-            ~DataArea(){}
+            virtual ~DataArea(){}
             virtual void placeData(Excel *pexcel,  int x, int y, const QStringList &data)=0;
             int height() const {return m_height;}
             int width() const {return m_width;}
